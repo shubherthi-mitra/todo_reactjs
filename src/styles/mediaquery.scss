@@ -1,0 +1,14 @@
+@media (max-width: 660px) {
+  .login {
+    padding: 0;
+  }
+  .header{
+    font-size: 12px
+  }
+  .header>article>a{
+    @include styledText(0.6rem);
+    @include myButton(60px);
+    margin: 0 0rem;
+    padding: 5px 0px;
+  }
+}
