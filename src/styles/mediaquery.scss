@@ -1,13 +1,43 @@
-@media (max-width: 660px) {
+@media (max-width: 1080px) {
   .login {
     padding: 0;
   }
-  .header{
-    font-size: 12px
+  .header {
+    font-size: 14px;
   }
-  .header>article>a{
+  .header > article > a {
+    @include styledText(0.9rem);
+    @include myButton(90px);
+    margin: 0 0rem;
+    padding: 10px 0px;
+  }
+}
+
+@media (max-width: 630px) {
+  .login {
+    padding: 0;
+  }
+  .header {
+    font-size: 12px;
+  }
+  .header > article > a {
     @include styledText(0.6rem);
     @include myButton(60px);
+    margin: 0 0rem;
+    padding: 5px 0px;
+  }
+}
+
+@media (max-width: 412px) {
+  .login {
+    padding: 0;
+  }
+  .header {
+    font-size: 10px;
+  }
+  .header > article > a {
+    @include styledText(0.47rem);
+    @include myButton(47px);
     margin: 0 0rem;
     padding: 5px 0px;
   }

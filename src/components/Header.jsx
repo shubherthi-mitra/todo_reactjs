@@ -5,7 +5,14 @@ import { Link, useLocation } from "react-router-dom";
 import { Context, server } from "../main";
 
 const Header = () => {
-  const { isAuthenticated, setIsAuthenticated, loading, setLoading, user, setUser } = useContext(Context);
+  const {
+    isAuthenticated,
+    setIsAuthenticated,
+    loading,
+    setLoading,
+    user,
+    setUser,
+  } = useContext(Context);
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
@@ -45,6 +52,7 @@ const Header = () => {
       toast.success("Logged Out Successfully");
       setIsAuthenticated(false);
       setLoading(false);
+      toggleDropdown();
     } catch (error) {
       toast.error(error.response.data.message);
       setIsAuthenticated(true);
@@ -81,43 +89,35 @@ const Header = () => {
           Profile
         </Link>
         {isAuthenticated ? (
-          <Link onClick={toggleDropdown} className="dropdown__toggle link user">
+          <Link onClick={toggleDropdown} className="link">
             {user?.name}
           </Link>
         ) : (
           <Link to={"/login"}>Login</Link>
         )}
-        <div className="dropdown">
-          {isOpen && (
-            // <ul className="dropdown__menu">
-            <>
-              <Link className="dropdown__item">
-                {isAuthenticated ? (
-                  <Link
-                    disabled={loading}
-                    onClick={logoutHandler}
-                    className="link"
-                  >
-                    Logout
-                  </Link>
-                ) : null}
+        {isOpen && (
+          <>
+            {isAuthenticated ? (
+              <Link disabled={loading} onClick={logoutHandler} className="link">
+                Logout
               </Link>
-              <Link className="dropdown__item">
-                {isAuthenticated ? (
-                  <Link
-                    to={"/deluser"}
-                    className="link"
-                    disabled={loading}
-                    onClick={delUserHandler}
-                  >
-                    Del Acc
-                  </Link>
-                ) : null}
+            ) : null}
+          </>
+        )}
+        {isOpen && (
+          <>
+            {isAuthenticated ? (
+              <Link
+                to={"/deluser"}
+                className="link"
+                disabled={loading}
+                onClick={delUserHandler}
+              >
+                Del Acc
               </Link>
-              </>
-            // </ul>
-          )}
-        </div>
+            ) : null}
+          </>
+        )}
       </article>
     </nav>
   );

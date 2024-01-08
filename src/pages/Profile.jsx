@@ -18,7 +18,7 @@ const Profile = () => {
   }else {
     return (
       <div>
-        <h1>...</h1>
+        <h1>You need to log in</h1>
       </div>
     );
   }
